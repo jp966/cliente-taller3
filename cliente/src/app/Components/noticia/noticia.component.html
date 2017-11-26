@@ -1,0 +1,54 @@
+<div layout="row" layout-align="center start">
+  <h3>Noticias</h3>
+</div>
+
+<div class="main-div">
+  <mat-card class="tarjeta-noticia" *ngFor="let noticia of totalNoticias | paginate: { itemsPerPage: 3, currentPage: p }">
+
+    <mat-card-title>
+
+      <mat-card-title>
+        <span style="justificado">{{ noticia.titular }}</span>
+      </mat-card-title>
+
+    </mat-card-title>
+
+    <mat-card-content>
+
+      <p style="justificado">{{ noticia.entrada }}</p>
+
+    </mat-card-content>
+
+    <img mat-card-image src={{noticia.imagen}}>
+
+    <mat-card-actions layout="row" layout-align="start center">
+     
+<!--
+      <button  class="btn boton-editar" type="button" (click) = "edicionNoticia(noticia)" *ngIf="isLogged" matTooltip="Editar">
+        <i class="fa fa-pencil-square-o icono" aria-hidden="true"></i>
+      </button>
+
+
+      <button class="btn boton-eliminar" type="button" (click) = "eliminarNoticia(noticia)" *ngIf="isLogged" matTooltip="Eliminar" >
+        <i class="fa fa-trash-o icono" aria-hidden="true"></i>
+      </button>
+    -->
+
+      <button class="btn boton-detalle" type="button" (click) = "detalleNoticia(noticia)" matTooltip="Ver detalles" >
+        <i class="fa fa-info-circle icono" aria-hidden="true"></i>
+      </button>
+
+    </mat-card-actions>
+
+  </mat-card>
+</div>
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+
+ <div class="fixed-action-btn" *ngIf="isLogged">
+    <a class="btn-floating btn-large boton-agregar" (click)="agregacionNoticia()">
+      <i class="large material-icons">add</i>
+    </a>
+  </div>
+

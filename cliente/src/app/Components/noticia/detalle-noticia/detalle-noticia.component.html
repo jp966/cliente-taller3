@@ -1,0 +1,39 @@
+
+<h1 mat-dialog-title style="text-align: center;">{{noticia.titular}}</h1>
+
+<div mat-dialog-content>
+
+
+<p>
+
+<span class="titulo">Fecha creación:</span> <span>{{noticia.fecha}}</span>
+
+<span class="titulo">Autor:</span> <span>{{noticia.usuario_id}}</span>
+
+<span class="titulo">Categoria:</span> <span>{{noticia.categoria_id}}</span>
+
+
+</p>
+
+
+<span class="titulo">Entrada</span>
+
+<p class="justificado">{{noticia.entrada}}</p>
+
+
+<span class="titulo">Cuerpo</span>
+
+<p class="justificado">{{noticia.cuerpo}}</p>
+
+
+<span class="titulo">Imagen</span>
+<p>
+	<img class="imagen-noticia" src={{noticia.imagen}} alt="">
+</p>
+
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Aceptar</button>
+</div>
+
