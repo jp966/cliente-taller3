@@ -92,65 +92,14 @@ actualizarCategorias ()
     });
   }
 
-  eliminarNoticia (noticia)
-  {
-    
-      this.servicioNoticia.deleteNoticia(noticia.id).subscribe( data => {
-        console.log(data);
-        this.actualizarNoticias();
-      });
-    }
-
-  
-
-
-  edicionNoticia (noticia)
-  {
-
-    var a = JSON.parse( JSON.stringify(noticia) );
-
-    this.pasarStringId(a);
-    this.pasarStringIdUsuario(a);
-
-    let dialogRef = this.dialog.open(EditarNoticiaComponent, {
-      width: '700px',
-      data:
-      {
-       noticia: a,
-       totalCategorias:this.totalCategorias,
-       servicioCategoria:this.servicioCategoria,
-       servicioNoticia:this.servicioNoticia
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-
-      this.actualizarNoticias();
-    });
-  }
-
-  agregacionNoticia()
-  {
-    let dialogRef = this.dialog.open(AgregarNoticiaComponent, {
-      width: '700px',
-      data:{
-        totalCategorias:this.totalCategorias,
-        servicioCategoria:this.servicioCategoria,
-        servicioNoticia:this.servicioNoticia
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-
-      this.actualizarNoticias();
-    });
-  }
-
 
    detalleNoticia(noticia)
   {
 
  
+    this.actualizarUsuarios();
+    this.actualizarCategorias();
+    this.actualizarNoticias();
 
     let dialogRef = this.dialog.open(DetalleNoticiaComponent, {
       width: '700px',

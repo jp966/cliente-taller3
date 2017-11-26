@@ -59,6 +59,7 @@ export class MiNoticiaComponent implements OnInit {
 
   ngOnInit() {
 
+
   }
 
 
@@ -154,7 +155,9 @@ actualizarCategorias ()
    detalleNoticia(noticia)
   {
 
- 
+    this.actualizarUsuarios();
+    this.actualizarCategorias();
+    this.actualizarNoticias();
 
     let dialogRef = this.dialog.open(DetalleNoticiaComponent, {
       width: '700px',
