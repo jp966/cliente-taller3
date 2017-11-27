@@ -25,7 +25,7 @@
    <p>Categoría</p>
 
   <mat-form-field style="width: 100% !important;">
-    <mat-select placeholder="Categoría" style="width: 100% !important;" required>
+    <mat-select placeholder="Categoría" style="width: 100% !important;" [(ngModel)]="noticia.categoria_id" required>
       <mat-option style="width: 100% !important;" *ngFor="let categoria of totalCategorias" [value]="categoria.id" (click)="categoriaSeleccionada(categoria)">
         {{ categoria.descripcion }}
       </mat-option>
