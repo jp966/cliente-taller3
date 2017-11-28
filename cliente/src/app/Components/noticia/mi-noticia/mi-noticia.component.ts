@@ -76,8 +76,7 @@ actualizar(){
          this.servicioNoticia.getNoticias().subscribe(data => {
             var todo: any = data;
             this.totalNoticias = todo;
-            this.reemplazarIdPorString();
-            this.reemplazarIdPorStringUsuario();
+           
 
           });
 
@@ -93,8 +92,7 @@ actualizar(){
       this.totalNoticias = todo;
       this.totalNoticias=this.totalNoticias.filter(noticia=>noticia.usuario_id
       											===JSON.parse(localStorage.getItem('idCurrent')).id);
-      this.reemplazarIdPorString();
-      this.reemplazarIdPorStringUsuario();
+     
 
     });
   }
@@ -118,9 +116,6 @@ actualizar(){
   {
 
     var a = JSON.parse( JSON.stringify(noticia) );
-
-    this.pasarStringId(a);
-    this.pasarStringIdUsuario(a);
 
     let dialogRef = this.dialog.open(EditarNoticiaComponent, {
       width: '700px',
@@ -159,76 +154,9 @@ actualizar(){
 
     detalleNoticia(noticia)
   {
-    this.servicioData.cambiarNoticia(noticia);
+    //this.servicioData.cambiarNoticia(noticia);
     this.router.navigate(['noticia/' + noticia.id]);
   }
-
-//serialización de categoría--
-    reemplazarIdPorString()
-  {
-    for(let i = 0 ; i < this.totalNoticias.length ; i ++)
-    {
-
-      for(let j = 0 ; j < this.totalCategorias.length ; j++)
-      {
-        if(parseInt(this.totalNoticias[i].categoria_id) === this.totalCategorias[j].id)
-        {
-          this.totalNoticias[i].categoria_id = this.totalCategorias[j].descripcion;
-          break;
-        }
-      }
-
-    }
-  }
-
-
-  pasarStringId(noticia)
-  {
-    for ( let i = 0 ; i < this.totalCategorias.length ; i ++)
-    {
-      if(noticia.categoria_id === this.totalCategorias[i].descripcion)
-        {
-          noticia.categoria_id = this.totalCategorias[i].id;
-        }
-    }
-
-  }
-
-  //-----
-
-  //serialización del usuario
-
-    reemplazarIdPorStringUsuario()
-  {
-    for(let i = 0 ; i < this.totalNoticias.length ; i ++)
-    {
-
-      for(let j = 0 ; j < this.totalUsuarios.length ; j++)
-      {
-        if(parseInt(this.totalNoticias[i].usuario_id) === this.totalUsuarios[j].id)
-        {
-          this.totalNoticias[i].usuario_id = this.totalUsuarios[j].name;
-          break;
-        }
-      }
-
-    }
-  }
-
-
-  pasarStringIdUsuario(noticia)
-  {
-    for ( let i = 0 ; i < this.totalUsuarios.length ; i ++)
-    {
-      if(noticia.usuario_id === this.totalUsuarios[i].name)
-        {
-          noticia.usuario_id = this.totalUsuarios[i].id;
-        }
-    }
-
-  }
-
-
 
 
 }
