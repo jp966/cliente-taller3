@@ -155,7 +155,7 @@ actualizar(){
     detalleNoticia(noticia)
   {
     //this.servicioData.cambiarNoticia(noticia);
-    this.router.navigate(['noticia/' + noticia.id]);
+    this.router.navigate(['noticias/' + noticia.id]);
   }
 
 
