@@ -1,8 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, Inject } from '@angular/core';
-
-import { EditarNoticiaComponent } from './editar-noticia/editar-noticia.component';
-import { AgregarNoticiaComponent } from './agregar-noticia/agregar-noticia.component';
-import { DetalleNoticiaComponent } from './detalle-noticia/detalle-noticia.component';
+import { Component, OnInit} from '@angular/core';
 
 import { Categoria } from '../../Models/categoria.model';
 import { CategoriasService } from '../../Services/categorias.service';
@@ -22,8 +18,6 @@ import { Router } from '@angular/router';
 //paginator
 import {NgxPaginationModule} from 'ngx-pagination';
 
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-
 @Component({
   selector: 'app-noticia',
   templateUrl: './noticia.component.html',
@@ -40,8 +34,8 @@ export class NoticiaComponent implements OnInit {
   public p:number=1;
 
   constructor(public servicioNoticia:NoticiasService,public servicioCategoria:CategoriasService,
-    public dialog: MatDialog, public servicioUsuario:UsuariosService, 
-      public eventosService:EventosService, public servicioData:DataService, public router:Router) {
+    public servicioUsuario:UsuariosService, public eventosService:EventosService, 
+                                            public servicioData:DataService, public router:Router) {
 
       //se determina si esta logeado o no el usuario
      if(localStorage.getItem('currentUser')){
@@ -56,9 +50,7 @@ export class NoticiaComponent implements OnInit {
   	this.totalNoticias=[];
     this.totalCategorias=[];
     this.totalUsuarios=[];
-    this.actualizarUsuarios();
-    this.actualizarCategorias();
-    this.actualizarNoticias();
+    this.actualizar();
 
    }
 
@@ -68,22 +60,28 @@ export class NoticiaComponent implements OnInit {
 
 
 //funciones para llamar dialogs a través de los botones de acciones
-actualizarCategorias ()
-  {
-    this.servicioCategoria.getCategorias().subscribe(data => {
+
+actualizar(){
+  this.servicioCategoria.getCategorias().subscribe(data => {
       var todo: any = data;
       this.totalCategorias = todo;
+
+       this.servicioUsuario.getUsuarios().subscribe(data=>{
+         var todo:any=data;
+         this.totalUsuarios=data;
+
+         this.servicioNoticia.getNoticias().subscribe(data => {
+            var todo: any = data;
+            this.totalNoticias = todo;
+            this.reemplazarIdPorString();
+            this.reemplazarIdPorStringUsuario();
+
+          });
+
+       })
+
     });
-  }
-
- actualizarUsuarios(){
-   this.servicioUsuario.getUsuarios().subscribe(data=>{
-     var todo:any=data;
-     this.totalUsuarios=data;
-   })
-
- }
-
+}
 
   actualizarNoticias ()
   {
@@ -99,21 +97,6 @@ actualizarCategorias ()
 
    detalleNoticia(noticia)
   {
-    /*
-
-    let dialogRef = this.dialog.open(DetalleNoticiaComponent, {
-      width: '700px',
-      data:{
-        noticia:noticia
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-
-      this.actualizarNoticias();
-    });
-    */
-
     this.servicioData.cambiarNoticia(noticia);
     this.router.navigate(['noticia/' + noticia.id]);
   }

@@ -55,9 +55,7 @@ export class MiNoticiaComponent implements OnInit {
   	this.totalNoticias=[];
     this.totalCategorias=[];
     this.totalUsuarios=[];
-    this.actualizarUsuarios();
-    this.actualizarCategorias();
-    this.actualizarNoticias();
+    this.actualizar();
 
    }
 
@@ -66,24 +64,27 @@ export class MiNoticiaComponent implements OnInit {
 
   }
 
-
-
-actualizarCategorias ()
-  {
-    this.servicioCategoria.getCategorias().subscribe(data => {
+actualizar(){
+  this.servicioCategoria.getCategorias().subscribe(data => {
       var todo: any = data;
       this.totalCategorias = todo;
+
+       this.servicioUsuario.getUsuarios().subscribe(data=>{
+         var todo:any=data;
+         this.totalUsuarios=data;
+
+         this.servicioNoticia.getNoticias().subscribe(data => {
+            var todo: any = data;
+            this.totalNoticias = todo;
+            this.reemplazarIdPorString();
+            this.reemplazarIdPorStringUsuario();
+
+          });
+
+       })
+
     });
-  }
-
- actualizarUsuarios(){
-   this.servicioUsuario.getUsuarios().subscribe(data=>{
-     var todo:any=data;
-     this.totalUsuarios=data;
-   })
-
- }
-
+}
 
   actualizarNoticias ()
   {
@@ -158,21 +159,6 @@ actualizarCategorias ()
 
     detalleNoticia(noticia)
   {
-    /*
-
-    let dialogRef = this.dialog.open(DetalleNoticiaComponent, {
-      width: '700px',
-      data:{
-        noticia:noticia
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-
-      this.actualizarNoticias();
-    });
-    */
-
     this.servicioData.cambiarNoticia(noticia);
     this.router.navigate(['noticia/' + noticia.id]);
   }

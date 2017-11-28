@@ -13,17 +13,6 @@ export class DetalleNoticiaComponent implements OnInit {
 
 	public noticia:any;
 
-/*
-  constructor(
-  	public dialogRef: MatDialogRef<DetalleNoticiaComponent>,
-	@Inject(MAT_DIALOG_DATA) public data: any
-	) { 
-
-   	this.noticia=data.noticia;
-
-  }
-  */
-
   constructor(public servicioData:DataService){
 
   }
@@ -34,13 +23,5 @@ export class DetalleNoticiaComponent implements OnInit {
 
     });
   }
-
-/*
-  	onNoClick()
-	{
-		this.dialogRef.close();
-	}
-
-  */
 
 }
