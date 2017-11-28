@@ -4,6 +4,7 @@ import { EventosService } from './Services/eventos.service';
 import { NoticiasService } from './Services/noticias.service';
 import { CategoriasService } from './Services/categorias.service';
 import { UsuariosService } from './Services/usuarios.service';
+import { DataService } from './Services/data.service';
 
 //PIPES
 import {NgxPaginationModule} from 'ngx-pagination';
@@ -158,6 +159,7 @@ import { MiNoticiaComponent } from './Components/noticia/mi-noticia/mi-noticia.c
     NoticiasService,
     CategoriasService,
     UsuariosService,
+    DataService,
 
     //GUARDS
     AuthGuard,

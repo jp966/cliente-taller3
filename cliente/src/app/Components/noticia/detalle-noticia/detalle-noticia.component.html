@@ -1,9 +1,4 @@
 
-<h1 mat-dialog-title style="text-align: center;">{{noticia.titular}}</h1>
-
-<div mat-dialog-content>
-
-
 <p>
 
 <span class="titulo">Fecha creación:</span> <span>{{noticia.fecha}}</span>
@@ -15,17 +10,18 @@
 
 </p>
 
-
-<span class="titulo">Entrada</span>
-
-<p class="justificado">{{noticia.entrada}}</p>
+<h1  style="text-align: center;">{{noticia.titular}}</h1>
 
 
-<span class="titulo">Cuerpo</span>
+<div class="row">
+	<div class="col s12">
 
-<p class="justificado">{{noticia.cuerpo}}</p>
+		<h5 class="justificado">{{noticia.entrada}}</h5>
 
 
+		<p class="justificado">{{noticia.cuerpo}}</p>
+	</div>
+</div>
 <!--<span class="titulo">Imagen</span>-->
 
 <div class="row">
@@ -38,9 +34,4 @@
 	</div>
 </div>
 
-</div>
-
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()" tabindex="-1">Aceptar</button>
-</div>
 

@@ -13,6 +13,8 @@ import { NoticiaComponent } from '../Components/noticia/noticia.component';
 
 import { MiNoticiaComponent } from '../Components/noticia/mi-noticia/mi-noticia.component';
 
+import { DetalleNoticiaComponent } from '../Components/noticia/detalle-noticia/detalle-noticia.component';
+
 const routes: Routes =
 [
 
@@ -21,6 +23,8 @@ const routes: Routes =
   { path:'noticias-usuario', component: MiNoticiaComponent, canActivate: [AuthGuard]},
 
   { path: 'noticias', component: NoticiaComponent},
+
+  { path: 'noticia/:id', component: DetalleNoticiaComponent },
 
   { path: '',  component: PrincipalComponent }
 

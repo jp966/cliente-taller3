@@ -155,9 +155,9 @@ actualizarCategorias ()
    detalleNoticia(noticia)
   {
 
-    this.actualizarUsuarios();
-    this.actualizarCategorias();
-    this.actualizarNoticias();
+    //this.actualizarUsuarios();
+    //this.actualizarCategorias();
+    //this.actualizarNoticias();
 
     let dialogRef = this.dialog.open(DetalleNoticiaComponent, {
       width: '700px',
