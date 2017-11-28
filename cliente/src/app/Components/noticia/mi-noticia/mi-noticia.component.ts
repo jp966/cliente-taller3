@@ -15,6 +15,10 @@ import { Noticia } from '../../../Models/noticia.model';
 
 import { EventosService } from '../../../Services/eventos.service';
 
+import { DataService } from '../../../Services/data.service';
+
+import { Router } from '@angular/router';
+
 //paginator
 import {NgxPaginationModule} from 'ngx-pagination';
 
@@ -36,7 +40,7 @@ export class MiNoticiaComponent implements OnInit {
 
  constructor(public servicioNoticia:NoticiasService,public servicioCategoria:CategoriasService,
     public dialog: MatDialog, public servicioUsuario:UsuariosService, 
-      public eventosService:EventosService) {
+      public eventosService:EventosService, public router:Router, public servicioData:DataService) {
 
       //se determina si esta logeado o no el usuario
      if(localStorage.getItem('currentUser')){
@@ -152,12 +156,9 @@ actualizarCategorias ()
   }
 
 
-   detalleNoticia(noticia)
+    detalleNoticia(noticia)
   {
-
-    //this.actualizarUsuarios();
-    //this.actualizarCategorias();
-    //this.actualizarNoticias();
+    /*
 
     let dialogRef = this.dialog.open(DetalleNoticiaComponent, {
       width: '700px',
@@ -170,6 +171,10 @@ actualizarCategorias ()
 
       this.actualizarNoticias();
     });
+    */
+
+    this.servicioData.cambiarNoticia(noticia);
+    this.router.navigate(['noticia/' + noticia.id]);
   }
 
 //serialización de categoría--
